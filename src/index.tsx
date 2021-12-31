@@ -7,30 +7,29 @@ export const Snippet = (props: SnippetProps) => {
   let [code, setCode] = React.useState(props.code[0] || null);
   let languages: string[] = props.code.map(a => a.language);
 
+  function updateCode(l: any) {
+    let newCode = props.code.find(a => a.language === l) as SnippetCode;
+    setCode(newCode);
+    (document.getElementById('code') as HTMLElement).innerHTML = hljs.highlight(
+      newCode.code,
+      {
+        language: newCode.language,
+      }
+    ).value;
+  }
+
+  React.useEffect(() => {
+    updateCode(languages[0]);
+  }, []);
+
   return (
     <>
       <div>
-        <select
-          onChange={e => {
-            let newCode = props.code.find(
-              a => a.language === e.currentTarget.value
-            ) as SnippetCode;
-            setCode(newCode);
-            let el = document.getElementById('code');
-            if (el) {
-              el.innerHTML = hljs.highlight(newCode.code, {
-                language: newCode.language,
-              }).value;
-            }
-          }}
-        >
+        <select onChange={e => updateCode(e.currentTarget.value)}>
           {languages.map((language, index) => (
             <option key={index}>{language}</option>
           ))}
         </select>
-        {
-          // show hljs themes select
-        }
         <span
           onClick={() => {
             navigator.clipboard.writeText(code.code);
@@ -44,7 +43,7 @@ export const Snippet = (props: SnippetProps) => {
         </span>
       </div>
       <div>
-        <div id="code" />
+        <div id="code"></div>
       </div>
     </>
   );
