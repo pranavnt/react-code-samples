@@ -13,7 +13,7 @@ export const Snippet = (props: SnippetProps) => {
       </option>
       <span
         onClick={() => {
-          let code = props.code.filter(a => a.language === props.language);
+          navigator.clipboard.writeText(code.code);
         }}
       >
         📝 Copy
