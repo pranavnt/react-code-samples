@@ -19,6 +19,12 @@ const App = () => {
             `,
             language: 'rust',
           },
+          {
+            code: `
+              fmt.Println("Hello, world!")
+            `,
+            language: 'go',
+          },
         ]}
         theme="nord"
       />
