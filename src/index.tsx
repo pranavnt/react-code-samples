@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './index.css';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/default.css';
 
@@ -54,6 +53,9 @@ export const Snippet = (props: SnippetProps) => {
           style={{
             float: 'right',
             cursor: 'pointer',
+            padding: '0.2em',
+            backgroundColor: '#f0f0f0',
+            borderRadius: '0.3em',
           }}
           id="copy-span"
         >
