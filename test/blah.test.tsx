@@ -21,7 +21,6 @@ describe('it', () => {
             language: 'rust',
           },
         ]}
-        theme="nord"
       />,
       div
     );

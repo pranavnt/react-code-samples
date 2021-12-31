@@ -4,12 +4,20 @@ import { Snippet } from '../src/index';
 
 const App = () => {
   return (
-    <div>
+    <div style={{ marginLeft: '25%', marginRight: '25%', marginTop: '5%' }}>
       <Snippet
         code={[
           {
             code: `
-              console.log('Hello World');
+            import axios from 'axios';
+
+            let pred = (await axios.get(\`/api/predict/\${props.modelID}\`, {
+              params: {
+                modelType: props.modelType,
+                values: vals,
+                id: props.modelID
+              }
+            })).data.pred;
             `,
             language: 'javascript',
           },
@@ -26,7 +34,10 @@ const App = () => {
             language: 'go',
           },
         ]}
-        theme="nord"
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
       />
     </div>
   );

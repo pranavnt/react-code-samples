@@ -1,5 +1,5 @@
 import * as React from 'react';
-//@ts-ignore
+import './index.css';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/default.css';
 
@@ -23,9 +23,26 @@ export const Snippet = (props: SnippetProps) => {
   }, []);
 
   return (
-    <>
-      <div>
-        <select onChange={e => updateCode(e.currentTarget.value)}>
+    <div style={props.style}>
+      <div
+        style={{
+          backgroundColor: '#DDD',
+          padding: '0.5em',
+          borderTopLeftRadius: '10px',
+          borderTopRightRadius: '10px',
+        }}
+      >
+        <select
+          style={{
+            height: '25px',
+            borderRadius: '3px',
+            lineHeight: '25px',
+            background: '#EEE',
+            border: '1px solid #e0e0e0',
+            padding: '0 30px 0 5px',
+          }}
+          onChange={e => updateCode(e.currentTarget.value)}
+        >
           {languages.map((language, index) => (
             <option key={index}>{language}</option>
           ))}
@@ -38,20 +55,30 @@ export const Snippet = (props: SnippetProps) => {
             float: 'right',
             cursor: 'pointer',
           }}
+          id="copy-span"
         >
-          📝 Copy
+          ☑ Copy
         </span>
       </div>
-      <div>
-        <div id="code"></div>
+      <div
+        style={{
+          backgroundColor: '#EFEFEF',
+          padding: '0.5em',
+          borderBottomLeftRadius: '10px',
+          borderBottomRightRadius: '10px',
+        }}
+      >
+        <pre>
+          <code id="code" />
+        </pre>
       </div>
-    </>
+    </div>
   );
 };
 
 interface SnippetProps {
-  theme: string;
   code: SnippetCode[];
+  style?: React.CSSProperties;
 }
 
 interface SnippetCode {
