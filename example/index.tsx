@@ -1,12 +1,27 @@
-import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Thing } from '../.';
+import { Snippet } from '../src/index';
 
 const App = () => {
   return (
     <div>
-      <Thing />
+      <Snippet
+        code={[
+          {
+            code: `
+              console.log('Hello World');
+            `,
+            language: 'javascript',
+          },
+          {
+            code: `
+              println!("Hello, world!");
+            `,
+            language: 'rust',
+          },
+        ]}
+        theme="nord"
+      />
     </div>
   );
 };
