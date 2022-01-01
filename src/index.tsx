@@ -1,12 +1,22 @@
 import * as React from 'react';
 import hljs from 'highlight.js';
 
-export const Snippet = (props: SnippetProps) => {
-  let [code, setCode] = React.useState(props.code[0] || null);
-  let languages: string[] = props.code.map(a => a.language);
+interface SnippetProps {
+  code: SnippetCode[];
+  style?: React.CSSProperties;
+}
+
+interface SnippetCode {
+  code: string;
+  language: string;
+}
+
+export const Snippet = ({ code: _code }: SnippetProps) => {
+  let [code, setCode] = React.useState(_code[0] || null);
+  let languages: string[] = _code.map(a => a.language);
 
   function updateCode(l: any) {
-    let newCode = props.code.find(a => a.language === l) as SnippetCode;
+    let newCode = _code.find(a => a.language === l) as SnippetCode;
     setCode(newCode);
     (document.getElementById('code') as HTMLElement).innerHTML = hljs.highlight(
       newCode.code,
@@ -18,7 +28,7 @@ export const Snippet = (props: SnippetProps) => {
 
   React.useEffect(() => {
     updateCode(languages[0]);
-  }, []);
+  }, [_code, languages]);
 
   return (
     <div style={props.style}>
@@ -76,13 +86,3 @@ export const Snippet = (props: SnippetProps) => {
     </div>
   );
 };
-
-interface SnippetProps {
-  code: SnippetCode[];
-  style?: React.CSSProperties;
-}
-
-interface SnippetCode {
-  code: string;
-  language: string;
-}
