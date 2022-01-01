@@ -1,6 +1,5 @@
 import * as React from 'react';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/default.css';
 
 export const Snippet = (props: SnippetProps) => {
   let [code, setCode] = React.useState(props.code[0] || null);

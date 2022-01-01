@@ -3,6 +3,9 @@
 usage example:
 
 ```js
+import {} from 'react-code-samples';
+import 'highlight.js/styles/default.css'; // or use another highlight js style
+
 <Snippet
   code={[
     {
@@ -28,5 +31,5 @@ usage example:
     width: '100%',
     height: '100%',
   }}
-/>
+/>;
 ```
