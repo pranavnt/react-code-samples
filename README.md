@@ -33,3 +33,5 @@ import 'highlight.js/styles/default.css'; // or use another highlight js style
   }}
 />;
 ```
+
+"THIS IS GAME HANGING" – @sarthaktexas
